@@ -78,7 +78,18 @@ print(f'Houve um exesso de {exesso}kg e terá de pagar uma multa de R${multa:.2f
 
 ### 14
 
+area = int(input('Digite a área em m² a ser pintada:'))
 
+lata = 18*3
+tot_latas = 0
+preco = 80
+tot_preco = 0
+
+while lata * tot_lata < area:
+    tot_lata += 1
+    tot_preco += preco
+
+print(f'Serão necessárias {tot_lata} latas de tintas, que sairão por R${tot_preco}')
 
 ### ATIV
 
