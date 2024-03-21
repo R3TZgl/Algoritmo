@@ -33,7 +33,7 @@ print(f"A área do círculo é {raio ** 2 * math.pi}")
 
 ### 7
 
-aresta = int(iput('Digite o valor da aresta do quadrado: '))
+aresta = int(input('Digite o valor da aresta do quadrado: '))
 print(f'O dobro da área do quadrado é {aresta ** 2 * 2}')
 
 ### 8
@@ -78,23 +78,30 @@ print(f'Houve um exesso de {exesso}kg e terá de pagar uma multa de R${multa:.2f
 
 ### 14
 
-area = int(input('Digite a área em m² a ser pintada:'))
+area = int(input('Digite a área em m² a ser pintada: '))
 
-lata = 18*3
+lata = 54
 tot_latas = 0
 preco = 80
 tot_preco = 0
 
-while lata * tot_lata < area:
-    tot_lata += 1
+while lata * tot_latas < area:
+    tot_latas += 1
     tot_preco += preco
 
-print(f'Serão necessárias {tot_lata} latas de tintas, que sairão por R${tot_preco}')
+print(f'Serão necessárias {tot_latas} latas de tintas, que sairão por R${tot_preco}')
 
-### ATIV
+### 15
 
-import math
+area = int(input('Digite a área em m² a ser pintada: '))
 
-num = int(input('Digite um número que possue uma raíz quadrada inteira: '))
+lata = 54
+tot_latas = 0
+preco = 80
+tot_preco = 0
 
-print(f'A raíz quadrada de {num} é {math.sqrt(num)}')
+while lata * tot_latas < area:
+    tot_latas += 1
+    tot_preco += preco
+
+print(f'Serão necessárias {tot_latas} latas de tintas, que sairão por R${tot_preco}')
