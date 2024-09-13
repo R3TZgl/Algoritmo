@@ -192,8 +192,8 @@ print("Vetor C:", vetor_C)
 #17
 notas = np.array([9.9, 9.7, 9.8, 10, 10])
 
-notas = np.delete(notas, np.argmax(notas))  # Remove a nota mais alta
-notas = np.delete(notas, np.argmin(notas))  # Remove a nota mais baixa
+notas = np.delete(notas, np.argmax(notas))
+notas = np.delete(notas, np.argmin(notas)) 
 
 media_final = np.mean(notas)
 
