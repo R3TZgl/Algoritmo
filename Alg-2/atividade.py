@@ -138,7 +138,7 @@ def intercalar_vetores(vetorA, vetorB):
 
     return vetorC
 
-vetor_C = intercalar_vetores(vetorA, vetorB)
+vetorC = intercalar_vetores(vetorA, vetorB)
 print("Vetor C:", vetorC)
 
 #C
