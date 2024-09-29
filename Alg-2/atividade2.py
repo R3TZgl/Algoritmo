@@ -1,19 +1,49 @@
-#1) ocupar vaga no estacionamento: lembrando que, o mesmo veículo não pode ocupar duas vagas. Sendo assim, se o veículo encontra-se estacionado, o sistema não permite a inclusão de um outro veículo com a mesma placa; A entrada no estacionamento ocorre pela registro da placa. A escolha da vaga será de modo aleatório dentre as vagas disponíveis livres. Para isto utilize a função random que simula a escolha da vaga pelo motorista. Outro ponto importante, verificar a disponbilidade de vaga, antes de liberar o estacionamento; 
-
-#2) liberar vaga: nesta funcionalidade, certifique-se de que o veículo encontra-se estabcionado. O sistema permite a saída de veículos que tem registro de entrada;
-
-#3) exibir as vagas disponíveis no estacionamento, informando por setor as vagas disponíveis;
-
-#4) consultar veículo estacionado
-
-#A estrutura de dados para o controle das vagas será o array da biblioteca numpy. Pode ser três array's, um para cada setor do estacionamento.
-
-#Todo o sistema precisa ser codificado em blocos (funções), desta forma trará clareza no código.
-
-#Esta atividade, além de aprofundar os conhecimentos em funções e array da biblioteca numpy,e da lógica da programação, ela simula alguns comportamentos que devemos adotar quando manipulamos tabelas do banco de dados: inclusão cujo registro é chave primária, consulta e exclusão de registro.  Importante, não vamos utilizar banco de dados para esta atividade. 
-
-import array as arr
 import numpy as np
+import random
 
-carros = np.array([])
-vagas = np.array([])
+setor_A = np.full(5, None)
+setor_B = np.full(5, None)
+setor_C = np.full(5, None)
+
+veiculos_estacionados = []
+
+
+def ocupar_vaga(placa):
+    # Função para verificar se o carro já está estacionado em uma vaga
+    if placa in veiculos_estacionados:
+        print(f'O carro com a placa {placa} já está estacionado.')
+        return
+
+    # Verificar a disponibilidade das vagas
+    for setor in [setor_A, setor_B, setor_C]:
+        vagas_disponiveis = [i for i, vaga in enumerate(setor) if vaga is None]
+        if vagas_disponiveis:
+            indice_vaga = random.choice(vagas_disponiveis)
+            setor[indice_vaga] = placa
+            veiculos_estacionados.append(placa)
+            print(f'O carro com a placa {placa} foi estacionado na vaga {indice_vaga + 1}.')
+            return
+    print('Não há vagas disponíveis.')
+
+def liberar_vaga(placa):
+    for setor in [setor_A, setor_B, setor_C]:
+        if placa in setor:
+            indice_vaga = np.where(setor == placa)[0][0]
+            setor[indice_vaga] = None
+            veiculos_estacionados.remove(placa)
+            print(f'O carro com a placa {placa} foi liberado da vaga {indice_vaga + 1}.')
+            return
+    print('Veículo não encontrado.')
+
+def exibir_vagas_disponiveis():
+    for i, setor in enumerate([setor_A, setor_B, setor_C], start=1):
+        vagas_disponiveis = [j + 1 for j, vaga in enumerate(setor) if vaga is None]
+        print(f'Setor {chr(64 + i)}: Vagas disponíveis - {vagas_disponiveis}')
+
+def consultar_veiculo(placa):
+    for i, setor in enumerate([setor_A, setor_B, setor_C], start=1):
+        if placa in setor:
+            indice_vaga = np.where(setor == placa)[0][0]
+            print(f'O veículo com a placa {placa} está no setor {chr(64 + i)}, vaga {indice_vaga + 1}.')
+            return
+    print('Veículo não encontrado.')
