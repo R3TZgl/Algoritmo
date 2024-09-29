@@ -25,6 +25,7 @@ def ocupar_vaga(placa):
             return
     print('Não há vagas disponíveis.')
 
+# Função para liberar a vaga
 def liberar_vaga(placa):
     for setor in [setor_A, setor_B, setor_C]:
         if placa in setor:
@@ -35,11 +36,13 @@ def liberar_vaga(placa):
             return
     print('Veículo não encontrado.')
 
+# Função para mostrar as vagas livres
 def exibir_vagas_disponiveis():
     for i, setor in enumerate([setor_A, setor_B, setor_C], start=1):
         vagas_disponiveis = [j + 1 for j, vaga in enumerate(setor) if vaga is None]
         print(f'Setor {chr(64 + i)}: Vagas disponíveis - {vagas_disponiveis}')
 
+# Função para ver se o veículo está estacionado em algum dos setores
 def consultar_veiculo(placa):
     for i, setor in enumerate([setor_A, setor_B, setor_C], start=1):
         if placa in setor:
